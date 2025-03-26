@@ -5,15 +5,42 @@
     {{> header-bar }}
   </body>
 
+  <div id="root" class="container"></div>
+
   <script>
-    // 🦁 crée un div avec l'id "root" et la classe "container"
-    
-    // 🦁 crée un button
-    
-    // 🦁 ajoute les classes "btn" et "btn-primary" dedans
-    
-    // 🦁 ajoute le text "Hello 👋" dedans
-    
-    // 🦁 ajoute le button dans l'élément "root"
+    const button = document.createElement('button');
+    button.classList.add('btn', 'btn-primary');
+    button.innerText = 'Hello 👋';
+    button.addEventListener('click', () => {
+      alert(`Tu as cliqué sur Hello !`);
+    });
+
+    const Counter = (initialValue) => {
+      const button = document.createElement('button');
+      button.innerText = Number(initialValue) || 0;
+      button.classList.add('btn', 'btn-primary');
+
+      const onClick = () => {
+        const previousValue = Number(button.innerText);
+        button.innerText = previousValue + 1;
+      };
+      button.addEventListener('click', onClick);
+      return button;
+    };
+
+    const fruits = ['banana', 'apple', 'strawberry', 'blueberry'];
+    const fruitsList = document.createElement('ul');
+    fruitsList.classList.add('list-disc', 'list-inside');
+
+    for (const i of fruits) {
+      const fruitLi = document.createElement('li');
+      fruitLi.innerText = i;
+      fruitsList.appendChild(fruitLi);
+    }
+
+    document.querySelector('#root').appendChild(button);
+    document.querySelector('#root').appendChild(Counter(0));
+    document.querySelector('#root').appendChild(Counter(20));
+    document.querySelector('#root').appendChild(fruitsList);
   </script>
 </html>

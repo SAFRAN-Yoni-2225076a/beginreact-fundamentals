@@ -20,15 +20,65 @@
   </body>
 
   <script>
-    // 🦁 Crée un button avec le text "Hello 👋"
-    // 🦁 Ajoute une événement "onClick" à notre button qui affiche une alert.
+    const helloButton = React.createElement(
+      'button',
+      {
+        id: 'Hello 👋',
+        className: 'btn btn-primary',
+        onClick: () => {
+          alert('Tu as cliqué sur Hello !');
+        },
+      },
+      'Boutonhello'
+    );
 
-    // 🦁 Crée une div : "main" avec à l'intérieur le bouton.
-    // 💡 On utilise un div `main` car la méthode `render` accepte qu'un seul élément
-    // 💡 On va donc utiliser cette div pour render tous nos éléments
+    const Card = () =>
+      React.createElement(
+        'div',
+        { className: 'card bg-base-300 w-96 shadow-xl' },
+        React.createElement(
+          'figure',
+          null,
+          React.createElement('img', {
+            src: 'https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg',
+            alt: 'Shoes',
+          })
+        ),
+        React.createElement(
+          'div',
+          { className: 'card-body' },
+          React.createElement('h2', { className: 'card-title' }, 'Shoes!'),
+          React.createElement('p', null, 'Moi je veux les chaussures'),
+          React.createElement(
+            'div',
+            { className: 'card-actions justify-end' },
+            React.createElement(
+              'button',
+              { className: 'btn btn-primary' },
+              'Achete chef'
+            )
+          )
+        )
+      );
+
+    const listeFruits = ['banane', 'pomme', 'fraise', 'myrtille'];
+
+    const fruits = React.createElement(
+      'ul',
+      { className: 'list-disc list-inside' },
+      listeFruits.map((fruit) => React.createElement('li', null, fruit))
+    );
+
+    const main = React.createElement(
+      'div',
+      null,
+      helloButton,
+      React.createElement(Card),
+      fruits
+    );
 
     const container = document.querySelector('#root');
-    const root = undefined; // 🦁 Remplace `undefined` by `ReactDOM.createRoot(container);`
-    // 🦁 Utilise `root.render` pour afficher la div "main"
+    const root = ReactDOM.createRoot(container);
+    root.render(main);
   </script>
 </html>
